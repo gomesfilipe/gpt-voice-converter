@@ -1,3 +1,4 @@
 gtts
 playsound
 speechrecognition
+sounddevice
