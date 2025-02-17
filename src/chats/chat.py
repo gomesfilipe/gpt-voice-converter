@@ -1,5 +1,5 @@
 from src.audio_text_converters.audio_text_converter import AudioTextConverter
-from src.gpts.gpt import GPT
+from src.gpt_apis.gpt_api import GptApi
 import os
 from typing import List
 from src.enums.color import Color
@@ -9,7 +9,7 @@ from src.exceptions.audio_exceptions import UnknownAudioException, ConnetionFail
 from config import MAX_CALLS_GPT_API, AUDIOS_DIR, USER_SUFFIX_AUDIO_FILENAME, GPT_SUFFIX_AUDIO_FILENAME
 
 class Chat():
-  def __init__(self, audio_text_converter: AudioTextConverter, gpt: GPT):
+  def __init__(self, audio_text_converter: AudioTextConverter, gpt: GptApi):
     self.__audio_text_converter = audio_text_converter
     self.__gpt = gpt
     self.__audios_path = AUDIOS_DIR
