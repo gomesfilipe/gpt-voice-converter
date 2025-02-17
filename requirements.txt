@@ -2,3 +2,4 @@ gtts
 playsound
 speechrecognition
 sounddevice
+dotenv

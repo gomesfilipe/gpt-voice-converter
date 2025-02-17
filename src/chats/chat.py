@@ -6,12 +6,13 @@ from src.enums.color import Color
 import time
 from src.enums.language import Language
 from src.exceptions.audio_exceptions import UnknownAudioException, ConnetionFailedException
+from config import MAX_CALLS_GPT_API, AUDIOS_DIR, USER_SUFFIX_AUDIO_FILENAME, GPT_SUFFIX_AUDIO_FILENAME
 
 class Chat():
   def __init__(self, audio_text_converter: AudioTextConverter, gpt: GPT):
     self.__audio_text_converter = audio_text_converter
     self.__gpt = gpt
-    self.__audios_path = 'audios'
+    self.__audios_path = AUDIOS_DIR
     os.makedirs(self.__audios_path, exist_ok = True)
     self.__index: int = 0
 
@@ -24,7 +25,7 @@ class Chat():
         os.remove(file_path)
 
   def __get_audio_input_from_user(self) -> str:
-    user_audio_filename = os.path.join(self.__audios_path, f'user_{self.__index}.wav')
+    user_audio_filename = os.path.join(self.__audios_path, f'{USER_SUFFIX_AUDIO_FILENAME}_{self.__index}.wav')
     text = None
 
     while True:
@@ -43,10 +44,10 @@ class Chat():
           return text
 
   def __display_audio_answer_from_gpt(self, text: str) -> None:
-    gpt_audio_filename = os.path.join(self.__audios_path, f'gpt_{self.__index}.wav')
+    gpt_audio_filename = os.path.join(self.__audios_path, f'{GPT_SUFFIX_AUDIO_FILENAME}_{self.__index}.wav')
     gpt_text = None
 
-    for _ in range(3):
+    for _ in range(MAX_CALLS_GPT_API):
       try:
         gpt_text = self.__gpt.send(text)
         break
