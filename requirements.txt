@@ -2,4 +2,4 @@ gtts
 playsound
 speechrecognition
 sounddevice
-dotenv
+python-dotenv
