@@ -14,8 +14,8 @@ GPT_SUFFIX_AUDIO_FILENAME = 'gpt'
 GPT_API_KEY = os.getenv('GPT_API_KEY')
 
 # TODO Descomentar quando integrar com a API do ChatGPT 
-# if GPT_API_KEY is None:
-#   raise Exception('GPT_API_KEY is missing in .env file.')
+if GPT_API_KEY is None:
+    raise Exception('GPT_API_KEY is missing in .env file.')
 
 AUDIO_TEXT_CONVERTER: AudioTextConverter = Pyttsx3AudioTextConverter()
 GPT_API: GptApi = GeminiApi(GPT_API_KEY)
