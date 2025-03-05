@@ -17,7 +17,7 @@ if api_key is None:
 
 client = genai.Client(api_key=api_key)
 
-class ChatGptApi(GptApi):
+class GeminiApi(GptApi):
   def send(self, text: str) -> str:
         try:
             if not hasattr(self, "prompt"):

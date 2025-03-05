@@ -3,7 +3,7 @@ import os
 from src.audio_text_converters.audio_text_converter import AudioTextConverter
 from src.audio_text_converters.pyttsx3_audio_text_converter import Pyttsx3AudioTextConverter
 from src.gpt_apis.gpt_api import GptApi
-from src.gpt_apis.chat_gpt_api import ChatGptApi
+from src.gpt_apis.chat_gpt_api import GeminiApi
 
 load_dotenv()
 
@@ -18,4 +18,4 @@ GPT_API_KEY = os.getenv('GPT_API_KEY')
 #   raise Exception('GPT_API_KEY is missing in .env file.')
 
 AUDIO_TEXT_CONVERTER: AudioTextConverter = Pyttsx3AudioTextConverter()
-GPT_API: GptApi = ChatGptApi(GPT_API_KEY)
+GPT_API: GptApi = GeminiApi(GPT_API_KEY)
