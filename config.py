@@ -3,7 +3,7 @@ import os
 from src.audio_text_converters.audio_text_converter import AudioTextConverter
 from src.audio_text_converters.pyttsx3_audio_text_converter import Pyttsx3AudioTextConverter
 from src.gpt_apis.gpt_api import GptApi
-from src.gpt_apis.chat_gpt_api import GeminiApi
+from src.gpt_apis.gemini_api import GeminiApi
 
 load_dotenv()
 

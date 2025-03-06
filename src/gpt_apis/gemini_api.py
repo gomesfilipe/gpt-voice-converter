@@ -4,11 +4,11 @@ from google import genai
 import os
 
 class GeminiApi(GptApi):
-  def __init__(self, api_key: str):
-    self.api_key = api_key
-    self.client = genai.Client(api_key=api_key)
+    def __init__(self, api_key: str):
+        self.api_key = api_key
+        self.client = genai.Client(api_key=api_key)
 
-  def send(self, text: str) -> str:
+    def send(self, text: str) -> str:
         try:
             if not hasattr(self, "prompt"):
                 self.prompt = "Responda apenas ao ultimo texto após a última tag [HUMAN] como uma conversa entre humanos, considere o restante como o contexto da conversa, não utilize emojis, ignore tudo que está entre colchetes. Seu nome é Cassandra, aja como uma mulher divorciada em busca de um homem solteiro "
