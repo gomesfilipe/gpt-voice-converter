@@ -41,38 +41,36 @@ class Pyttsx3AudioTextConverter(AudioTextConverter):
         Retorna o caminho do arquivo processado.
         """
 
-        with suppress_stderr():
-          # Carrega o áudio (taxa de amostragem e dados)
-          rate, data = wav.read(audio_filename)
-          # Aplica a redução de ruído usando noisereduce
-          reduced_noise = nr.reduce_noise(y=data, sr=rate)
-          # Cria um arquivo temporário para salvar o áudio processado
-          tmp_file = tempfile.NamedTemporaryFile(suffix=".wav", delete=False)
-          tmp_filename = tmp_file.name
-          tmp_file.close()
-          wav.write(tmp_filename, rate, reduced_noise)
-          return tmp_filename
+        # Carrega o áudio (taxa de amostragem e dados)
+        rate, data = wav.read(audio_filename)
+        # Aplica a redução de ruído usando noisereduce
+        reduced_noise = nr.reduce_noise(y=data, sr=rate)
+        # Cria um arquivo temporário para salvar o áudio processado
+        tmp_file = tempfile.NamedTemporaryFile(suffix=".wav", delete=False)
+        tmp_filename = tmp_file.name
+        tmp_file.close()
+        wav.write(tmp_filename, rate, reduced_noise)
+        return tmp_filename
 
     def generate_text_from_audio_file(self, audio_filename: str) -> str:
-        with suppress_stderr():
-          # Pré-processa o áudio para redução de ruído
-          tmp_filename = self.preprocess_audio(audio_filename)
-          try:
-              # Utiliza o arquivo processado para o reconhecimento
-              with sr.AudioFile(tmp_filename) as source:
-                  # Ajusta com base no ruído ambiente (duração em segundos)
-                  self.__recognizer.adjust_for_ambient_noise(source, duration=1)
-                  audio = self.__recognizer.record(source)
-              # Realiza o reconhecimento de fala usando o Google
-              result = self.__recognizer.recognize_google(audio, language='pt-BR')
-              return result
-          except sr.UnknownValueError:
-              raise UnknownAudioException()
-          except sr.RequestError:
-              raise ConnetionFailedException()
-          finally:
-              # Remove o arquivo temporário
-              os.remove(tmp_filename)
+        # Pré-processa o áudio para redução de ruído
+        tmp_filename = self.preprocess_audio(audio_filename)
+        try:
+            # Utiliza o arquivo processado para o reconhecimento
+            with sr.AudioFile(tmp_filename) as source:
+                # Ajusta com base no ruído ambiente (duração em segundos)
+                self.__recognizer.adjust_for_ambient_noise(source, duration=1)
+                audio = self.__recognizer.record(source)
+            # Realiza o reconhecimento de fala usando o Google
+            result = self.__recognizer.recognize_google(audio, language='pt-BR')
+            return result
+        except sr.UnknownValueError:
+            raise UnknownAudioException()
+        except sr.RequestError:
+            raise ConnetionFailedException()
+        finally:
+            # Remove o arquivo temporário
+            os.remove(tmp_filename)
 
     def run_audio_from_file(self, audio_filename: str):
         playsound(audio_filename)
