@@ -5,6 +5,7 @@ from playsound import playsound
 import speech_recognition as sr
 from src.exceptions.audio_exceptions import UnknownAudioException, ConnetionFailedException
 from src.enums.color import Color
+from pydub import AudioSegment
 import contextlib
 import noisereduce as nr
 import scipy.io.wavfile as wav
@@ -30,10 +31,20 @@ def suppress_stderr():
 class Pyttsx3AudioTextConverter(AudioTextConverter):
     def __init__(self):
         self.__recognizer = sr.Recognizer()
+        self.__recognizer.energy_threshold = 300  
 
     def save_audio_from_text(self, text: str, audio_filename: str, language: Language) -> None:
         tts = gTTS(text, lang=language.value)
         tts.save(audio_filename)
+        speed = 1.25
+
+        if speed != 1.0:
+          # Carrega o áudio gerado
+          audio = AudioSegment.from_file(audio_filename)
+          # Acelera o áudio usando o pydub
+          sped_up_audio = audio.speedup(playback_speed=speed)
+          # Salva o áudio acelerado (sobrescrevendo o arquivo original ou em um novo)
+          sped_up_audio.export(audio_filename, format="mp3")
 
     def preprocess_audio(self, audio_filename: str) -> str:
         """
@@ -83,7 +94,7 @@ class Pyttsx3AudioTextConverter(AudioTextConverter):
                   self.__recognizer.adjust_for_ambient_noise(source, duration=1)
                   Color.YELLOW.print('[APP] Ruídos ajustados!')
                   # Define timeout e limite para captação da fala
-                  audio = self.__recognizer.listen(source, timeout=5, phrase_time_limit=10)
+                  audio = self.__recognizer.listen(source)
               with open(audio_filename, "wb") as f:
                   f.write(audio.get_wav_data())
           except sr.UnknownValueError:

@@ -7,3 +7,4 @@ openai
 google-genai
 scipy
 noisereduce
+pydub
