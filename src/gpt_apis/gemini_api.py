@@ -27,6 +27,6 @@ class GeminiApi(GptApi):
 
             self.prompt += "[ROBOT] " + response.text + "\n"
 
-            return response.text
+            return resposta_api
         except Exception as e:
             return f"Erro na chamada da API: {str(e)}"
