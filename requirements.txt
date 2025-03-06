@@ -3,7 +3,6 @@ playsound
 speechrecognition
 sounddevice
 python-dotenv
-openai
 google-genai
 scipy
 noisereduce
