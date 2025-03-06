@@ -11,13 +11,15 @@ class GeminiApi(GptApi):
   def send(self, text: str) -> str:
         try:
             if not hasattr(self, "prompt"):
-                self.prompt = "Responda como uma conversa entre humanos, não utilize emojis: "
-            self.prompt += text
+                self.prompt = "Responda apenas ao ultimo texto após a última tag [HUMAN] como uma conversa entre humanos, considere o restante como o contexto da conversa, não utilize emojis, ignore tudo que está entre colchetes. Seu nome é Cassandra: "
+            self.prompt += "[HUMAN] " + text + "\n"
 
             response = self.client.models.generate_content(
                 model="gemini-2.0-flash",
                 contents=self.prompt
             )
+
+            self.prompt += "[ROBOT] " + response.text + "\n"
 
             return response.text
         except Exception as e:
