@@ -13,7 +13,6 @@
   - [Pré-requisitos](#pré-requisitos)
   - [Instalação](#instalação)
   - [Uso](#uso)
-  - [Testes](#testes)
 ---
 
 ## Visão Geral
@@ -57,19 +56,17 @@ O GPT-Voice-Converter permite conversas naturais com um modelo de linguagem gran
 ## Como Começar
 
 ### Pré-requisitos
-- **Linguagem de programação:** Python
+- **Linguagem de programação:** Python3
 - **Gerenciador de pacotes:** Pip
 
 ### Instalação
-
-**A partir do código fonte:**
 
 1. Clone o repositório:
 ```sh
 ❯ git clone https://github.com/gomesfilipe/gpt-voice-converter.git
 ```
 
-2. Instale as dependências:
+1. Instale as dependências:
 ```sh
 ❯ ./install-dependencies.sh
 ```
@@ -78,11 +75,5 @@ O GPT-Voice-Converter permite conversas naturais com um modelo de linguagem gran
 
 Execute o programa com:
 ```sh
-❯ python main.py
-```
-
-### Testes
-Execute os testes usando:
-```sh
-❯ python -m unittest
+❯ python3 main.py
 ```
