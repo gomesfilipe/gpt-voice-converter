@@ -67,6 +67,9 @@ O GPT-Voice-Converter permite conversas naturais com um modelo de linguagem gran
 ```
 
 1. Instale as dependências:
+
+Para a execução do *script* de instalação a seguir, será neessária a permissão de administrador (*sudo*) para a instalação da biblioteca `python3-pyaudio`.
+
 ```sh
 ❯ ./install-dependencies.sh
 ```
