@@ -82,7 +82,7 @@ A instalação das dependências pode ser feita automaticamente usando o script 
 Alternativamente, se preferir trabalhar em um ambiente isolado, você pode criar uma Virtual Environment (venv) e instalar as dependências nela, já que o projeto possui o arquivo `requirements.txt`. Siga os passos abaixo para utilizar a venv:
 
 ```bash
-python -m venv venv          # cria a virtual environment
+python3 -m venv venv          # cria a virtual environment
 source venv/bin/activate     # ativa a virtual environment (Linux/Mac)
 pip3 install -r requirements.txt  # instala os pacotes na venv
 ```
