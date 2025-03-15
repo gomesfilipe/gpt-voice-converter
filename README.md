@@ -1,7 +1,10 @@
 <p align="center"><h1 align="center">GPT-VOICE-CONVERTER</h1></p>
-<p align="center">
-    <em>Fale com a IA, escute sua voz.</em>
-</p>
+
+## Autores
+<ul>
+    <li>Christian Junji Litzinger State</li>
+    <li>Filipe Gomes Arante de Souza</li>
+</ul>
 
 ## Índice
 
@@ -59,7 +62,7 @@ O GPT-Voice-Converter permite conversas naturais com um modelo de linguagem gran
 ## Como Começar
 
 ### Pré-requisitos
-- **Linguagem de programação:** Python3
+- **Linguagem de programação:** Python 3.10
 - **Gerenciador de pacotes:** Pip
 
 ### Instalação
