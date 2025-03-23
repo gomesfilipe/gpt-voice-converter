@@ -6,6 +6,10 @@
     <li>Filipe Gomes Arante de Souza</li>
 </ul>
 
+## Relatório
+
+O relatório em PDF se encontra na raiz do repositório, com o nome relatorio-GPT-Voice-Converter.pdf
+
 ## Índice
 
 - [Índice](#índice)
